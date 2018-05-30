@@ -1,0 +1,10 @@
+class Json2Obj:
+    def __init__(self, json):
+        """Constructor accepts json string as an argument.
+        """
+        self.__dict__ = json
+        for i in self.__dict__.keys():
+            child = self.__dict__[i]
+            if isinstance(child, dict):
+                if len(child) > 0:
+                    self.__dict__[i] = Json2Obj(child)
